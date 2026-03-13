@@ -1,0 +1,26 @@
+Scenario                    Use
+-------------------------------------
+User registration           ModelForm
+User login                  Form
+Create/edit a product       ModelForm
+Contact form                Form
+Checkout form               Form
+Search form                 Form
+Blog post creation          ModelForm
+Password reset              Form
+Cart quantity update        Form
+
+
+# ModelForm - .save() works directly ✓
+def create_product(request):
+    form = ProductForm(request.POST)
+    if form.is_valid():
+        form.save()   # saves to DB automatically
+
+# Regular Form - you handle saving manually
+def contact(request):
+    form = ContactForm(request.POST)
+    if form.is_valid():
+        name = form.cleaned_data['name']
+        email = form.cleaned_data['email']
+        # send email, save manually, etc
