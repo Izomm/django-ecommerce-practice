@@ -1,0 +1,17 @@
+Pango 
+
+pydyf 
+
+CFFI 
+
+tinyhtml5 
+
+tinycss2 
+
+cssselect2 
+
+Pyphen 
+
+Pillow 
+
+fontTools 

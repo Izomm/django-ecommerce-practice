@@ -28,8 +28,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #We add it before because its a bit more restrictive
     path('cart/', include('cart.urls', namespace='cart')),
-    path('', include('shop.urls', namespace='shop')),
     path('orders/', include('orders.urls', namespace='orders')),
+    #placed before shops to prevent unintended matching
+    path('payment/', include('payment.urls', namespace='payment')),
+    path('', include('shop.urls', namespace='shop')),
+    
 ]
 
 

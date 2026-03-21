@@ -1,1 +1,26 @@
+# Environment
+.env
+.env.local
+.env.production
+
+# Virtual environment
+venv/
+env/
+
+# Django
+*.pyc
+__pycache__/
+db.sqlite3
 media/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+#TIPS
+tips.txt
+

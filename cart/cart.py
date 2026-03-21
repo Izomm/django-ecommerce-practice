@@ -2,7 +2,16 @@ from decimal import Decimal
 from django.conf import settings
 from shop.models import Product
 
+#Remember python has to serialize Session to JSOn (converting objects to string) because it has to save them in db or cache tha only accepts texts
+#It is either Pickle format (fast but dangerous ) or JSON (Slow but safe)
 
+'''
+# These serialize fine 
+str, int, float, bool, list, dict, None
+
+# These DONT serialize || Needs conversion when they are to be serialized
+Decimal, datetime, model instances, querysets
+'''
 class Cart:
     def __init__(self, request):
         """
@@ -77,6 +86,8 @@ class Cart:
                     #Doesnt build the list all into memory at once
                     #Retuns one value and continues from where it stops -Memory efficient
                     yield item
+
+                    #So anytime you loop over a cart object, it gives you only one of this item at a time (one loop - one yileded item)
            
     def __len__(self):
             """
