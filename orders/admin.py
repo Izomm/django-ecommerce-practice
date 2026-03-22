@@ -95,6 +95,7 @@ class OrderAdmin(admin.ModelAdmin):
     'updated',
     order_detail,
     order_pdf,
+    'coupon',
  
     ]
     list_filter = ['paid', 'created', 'updated'] 
