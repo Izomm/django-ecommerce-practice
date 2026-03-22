@@ -4,6 +4,7 @@ from shop.models import Product
 from .cart import Cart
 from .forms import CartAddProductForm
 from coupons.forms import CouponApplyForm
+from shop.recommender import Recommender
 
 # Create your views here.
 
@@ -38,17 +39,25 @@ def cart_detail(request):
     #This line gets the saved cart from session 
     cart = Cart(request)
 
-    print(type(cart))
-    print(type(cart.cart))
+    # print(type(cart))
+    # print(type(cart.cart))
     # cart_items = list(cart)  
-    
+    r = Recommender()
+    cart_products = [item['product'] for item in cart]
+    if(cart_products):
+        recommended_products = r.suggest_products_for(
+        cart_products, max_results=4
+        )
+    else:
+        ßrecommended_products = []
+        
 
     
     for item in cart:
-            print(f'-----skr {item}')
+            # print(f'-----skr {item}')
             item['update_quantity_form'] = CartAddProductForm(
             initial={'quantity': item['quantity'], 'override': True}
             )
 
     coupon_apply_form = CouponApplyForm()
-    return render(request, 'cart/detail.html', {'cart': cart, 'coupon_apply_form':coupon_apply_form })
+    return render(request, 'cart/detail.html', {'cart': cart, 'coupon_apply_form':coupon_apply_form,'recommended_products': recommended_products })
